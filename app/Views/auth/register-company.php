@@ -1,4 +1,7 @@
-<?php /* Vue generee automatiquement */ ?>
-<div class="container py-4">
-    <h1>register-company</h1>
+<div class="grid sm:grid-cols-2 gap-4">
+    <div class="sm:col-span-2"><label class="register-label" for="companyName">Nom de l’entreprise *</label><input id="companyName" name="raison_sociale" autocomplete="organization" required maxlength="200" class="field" placeholder="Raison sociale"></div>
+    <div><label class="register-label" for="companyContact">Nom du responsable *</label><input id="companyContact" name="responsable" autocomplete="name" required maxlength="150" class="field" placeholder="Prénom et nom"></div>
+    <div><label class="register-label" for="companyCity">Ville *</label><input id="companyCity" name="ville_entreprise" autocomplete="address-level2" required maxlength="100" class="field" placeholder="Ex. Lubumbashi"></div>
+    <div><label class="register-label" for="companySector">Secteur d’activité *</label><select id="companySector" name="secteur" required class="field"><option value="">Choisir un secteur</option><option>Tech &amp; IT</option><option>Finance &amp; Banque</option><option>Mines &amp; Énergie</option><option>Logistique</option><option>Vente &amp; Marketing</option><option>Santé</option><option>ONG &amp; Humanitaire</option><option>Administration</option><option>Autre</option></select></div>
+    <div><label class="register-label" for="companyRccm">Numéro RCCM <span class="muted font-normal">(facultatif)</span></label><input id="companyRccm" name="rccm" maxlength="100" class="field" placeholder="Numéro d’immatriculation"></div>
 </div>

@@ -25,7 +25,7 @@ class Database
             ]);
             return self::$connection;
         } catch (PDOException $e) {
-            die('Erreur de connexion a la base de donnees : ' . htmlspecialchars($e->getMessage()));
+            throw new \RuntimeException('La base de données est indisponible.', 0, $e);
         }
     }
 }

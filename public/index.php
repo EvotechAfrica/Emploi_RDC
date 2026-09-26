@@ -14,23 +14,23 @@ spl_autoload_register(function ($class) {
 });
 
 \App\Core\Session::start();
-?>
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Emploi RDC</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= BASE_URL ?>/assets/css/style.css" rel="stylesheet">
-</head>
-<body>
-<div class="container py-5">
-    <div class="p-5 bg-white rounded-4 shadow-sm">
-        <h1 class="fw-bold">Emploi RDC</h1>
-        <p class="lead">Architecture MVC installee avec succes.</p>
-        <p>La prochaine etape consiste a importer la base de donnees et developper les modules.</p>
-    </div>
-</div>
-</body>
-</html>
+
+$page = $_GET['page'] ?? 'accueil';
+$dashboardPages = require ROOT_PATH . '/config/dashboard-pages.php';
+$authRoutes = ['google-start'=>'googleStart', 'google-callback'=>'googleCallback', 'dashboard'=>'dashboard', 'compte'=>'account', 'deconnexion'=>'logout'];
+if (is_string($page) && isset($authRoutes[$page])) {
+    (new \App\Controllers\AuthController())->{$authRoutes[$page]}();
+} elseif (is_string($page) && isset($dashboardPages[$page])) {
+    (new \App\Controllers\AuthController())->workspace($page);
+} elseif ($page === 'admin-apercu') {
+    (new \App\Controllers\AdminController())->preview();
+} elseif ($page === 'connexion') {
+    (new \App\Controllers\AuthController())->login();
+} elseif ($page === 'inscription') {
+    (new \App\Controllers\AuthController())->register();
+} elseif ($page === 'accueil') {
+    (new \App\Controllers\HomeController())->index();
+} else {
+    http_response_code(404);
+    require VIEW_PATH . '/errors/404.php';
+}

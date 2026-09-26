@@ -1,0 +1,7 @@
+<?php
+// Copy to google.local.php. Never commit the client secret.
+return [
+    'client_id' => '',
+    'client_secret' => '',
+    'redirect_uri' => 'http://localhost/Emploi_RDC/public/?page=google-callback',
+];
